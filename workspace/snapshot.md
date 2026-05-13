@@ -1,0 +1,428 @@
+- generic [active] [ref=e1]:
+  - link "欢迎进入 百度新闻——海量中文资讯平台,盲人用户进入智能盲道请按快捷键Ctrl+Alt+R；阅读详细操作说明请按快捷键Ctrl+Alt+问号键。":
+    - /url: javascript:void(0)
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - list:
+        - listitem [ref=e4]:
+          - link "注册" [ref=e5] [cursor=pointer]:
+            - /url: http://passport.baidu.com/v2/?reg&tpl=xw&regType=1&u=https%3A%2F%2Fnews.baidu.com%2F
+        - listitem [ref=e6]:
+          - link "登录" [ref=e7] [cursor=pointer]:
+            - /url: http://passport.baidu.com/v2/?login&tpl=xw&u=https%3A%2F%2Fnews.baidu.com%2F
+        - listitem [ref=e8]:
+          - link "百度首页" [ref=e9] [cursor=pointer]:
+            - /url: http://www.baidu.com
+    - list [ref=e10]:
+      - listitem [ref=e11]:
+        - link "网页" [ref=e12] [cursor=pointer]:
+          - /url: https://www.baidu.com/
+      - listitem [ref=e13]: 新闻
+      - listitem [ref=e14]:
+        - link "贴吧" [ref=e15] [cursor=pointer]:
+          - /url: http://tieba.baidu.com/
+      - listitem [ref=e16]:
+        - link "知道" [ref=e17] [cursor=pointer]:
+          - /url: https://zhidao.baidu.com/
+      - listitem [ref=e18]:
+        - link "音乐" [ref=e19] [cursor=pointer]:
+          - /url: https://music.taihe.com
+      - listitem [ref=e20]:
+        - link "图片" [ref=e21] [cursor=pointer]:
+          - /url: http://image.baidu.com/
+      - listitem [ref=e22]:
+        - link "视频" [ref=e23] [cursor=pointer]:
+          - /url: http://v.baidu.com/
+      - listitem [ref=e24]:
+        - link "地图" [ref=e25] [cursor=pointer]:
+          - /url: http://map.baidu.com/
+      - listitem [ref=e26]:
+        - link "文库" [ref=e27] [cursor=pointer]:
+          - /url: http://wenku.baidu.com/
+  - table [ref=e31]:
+    - rowgroup [ref=e32]:
+      - row "百度新闻 百度一下 帮助" [ref=e33]:
+        - cell "百度新闻" [ref=e34]:
+          - link "百度新闻" [ref=e36] [cursor=pointer]:
+            - /url: http://news.baidu.com/
+            - img "百度新闻" [ref=e37]
+        - cell "百度一下 帮助" [ref=e38]:
+          - table [ref=e39]:
+            - rowgroup [ref=e40]:
+              - row "百度一下 帮助" [ref=e41]:
+                - cell "百度一下" [ref=e42]:
+                  - generic [ref=e43]:
+                    - textbox [ref=e45]
+                    - button "百度一下" [ref=e47] [cursor=pointer]
+                - cell "帮助" [ref=e48]:
+                  - link "帮助" [ref=e49] [cursor=pointer]:
+                    - /url: //help.baidu.com
+  - generic [ref=e50]:
+    - generic [ref=e51]:
+      - generic [ref=e53]:
+        - list [ref=e55]:
+          - listitem [ref=e56]:
+            - link "热点要闻" [ref=e57] [cursor=pointer]:
+              - /url: javascript:void(0);
+        - generic [ref=e59]:
+          - list [ref=e61]:
+            - listitem [ref=e62]:
+              - strong [ref=e64]:
+                - link "近镜头｜新春之约擘画中俄关系新蓝图" [ref=e65] [cursor=pointer]:
+                  - /url: " https://h.xinhuaxmt.com/vh512/share/12957893?newstype=1001&homeshow=1 "
+            - listitem [ref=e66]:
+              - strong [ref=e68]:
+                - link "“为了谁”，是摆在首位的｜总书记强调的正确政绩观" [ref=e69] [cursor=pointer]:
+                  - /url: https://mp.weixin.qq.com/s/nNBnoWJ0tQ8uCPpKYGy3Sg
+                - link "“冰雪大国”是怎么炼成的？" [ref=e70] [cursor=pointer]:
+                  - /url: "https://www.peopleapp.com/column/30051367001-500007340910 "
+            - listitem [ref=e71]:
+              - strong [ref=e73]:
+                - link "新春大集“红红火火”打造沉浸式年味场景" [ref=e74] [cursor=pointer]:
+                  - /url: https://news.cctv.com/2026/02/05/ARTIV1fdo0dHLuKAgyMObdgU260205.shtml
+                - link "安检流程有哪些、随身行李有何规定 春运乘机指南" [ref=e75] [cursor=pointer]:
+                  - /url: https://content-static.cctvnews.cctv.com/snow-book/index.html?item_id=9643089721273397286&toc_style_id=feeds_default&share_to=copy_url&track_id=37c39e90-b99a-477e-9fac-4c1668c7b1e0
+                - link "2025年机械工业运行稳中向好" [ref=e76] [cursor=pointer]:
+                  - /url: https://content-static.cctvnews.cctv.com/snow-book/video.html?item_id=701867829044061545&t=1770291687125&toc_style_id=video_default&share_to=copy_url&track_id=d1176937-49d7-4310-840a-e778edeeb5cc
+            - listitem [ref=e77]:
+              - strong [ref=e79]:
+                - link "风雪边关路 战士军马共守祖国边防线" [ref=e80] [cursor=pointer]:
+                  - /url: https://content-static.cctvnews.cctv.com/snow-book/index.html?item_id=4851424914204733505&toc_style_id=feeds_default&share_to=wechat_timeline&track_id=4f4b5cd7-89fc-499d-acf7-f86072ba9a3f
+                - link "一图读懂《关于提升境外人员入境数字化服务便利性的实施意见》" [ref=e81] [cursor=pointer]:
+                  - /url: https://www.cac.gov.cn/2026-02/05/c_1772021797519844.htm
+                - link "开业半个月，电器卖场销售额近千万元" [ref=e82] [cursor=pointer]:
+                  - /url: https://www.peopleapp.com/column/30051379676-500007343275
+            - listitem [ref=e83]:
+              - strong [ref=e85]:
+                - link "各地多措并举守护市民“菜篮子”供应足、价格稳 喜庆祥和过大年" [ref=e86] [cursor=pointer]:
+                  - /url: https://news.cctv.com/2026/02/05/ARTINYFSWdxdxGPV1BoUxB4N260205.shtml
+                - link "27岁站长的第三个上海年：在600平方米前置仓，准备迎战小高峰" [ref=e87] [cursor=pointer]:
+                  - /url: https://www.shobserver.com/staticsg/wap/newsDetail?id=1063017
+                - link "透过税收看制造强国建设" [ref=e88] [cursor=pointer]:
+                  - /url: https://proapi.jingjiribao.cn/readnews.html?id=338415
+            - listitem [ref=e89]:
+              - strong [ref=e91]:
+                - link "亿缕阳光｜下一站，回家" [ref=e92] [cursor=pointer]:
+                  - /url: https://app.people.cn/h5/detail/normal/6692922970113024
+                - link "光明网时评：非遗快闪走进春运，让回家路有文化温度" [ref=e93] [cursor=pointer]:
+                  - /url: https://guancha.gmw.cn/2026-02/05/content_38580236.htm
+          - list [ref=e94]:
+            - listitem [ref=e95]:
+              - link "改革微词典｜人工智能+" [ref=e97] [cursor=pointer]:
+                - /url: https://news.cctv.cn/2026/02/05/ARTIvuXxJqr3x0n0XPLbIoHA260205.shtml
+            - listitem [ref=e98]:
+              - link "我国与APEC其他经济体进出口总值达26.29万亿元" [ref=e99] [cursor=pointer]:
+                - /url: " https://www.peopleapp.com/column/30051379680-500007343279"
+            - listitem [ref=e100]:
+              - link "视频丨日本民众举行集会 反对高市政权推动修宪" [ref=e101] [cursor=pointer]:
+                - /url: https://content-static.cctvnews.cctv.com/snow-book/index.html?item_id=1044655577062512554&toc_style_id=feeds_default&share_to=copy_url&track_id=a5113d06-c5fc-4b1d-8c46-c34a87babb9d
+            - listitem [ref=e102]:
+              - link "美国博主一声叹息：为何要浪费我们纳税人的钱来抹黑新疆？" [ref=e103] [cursor=pointer]:
+                - /url: " https://www.ts.cn/xwzx/szxw/202602/t20260205_32929272.shtml"
+            - listitem [ref=e104]:
+              - link "中央网信办所属部分在京事业单位2026年度公开招聘公告" [ref=e105] [cursor=pointer]:
+                - /url: "  https://mp.weixin.qq.com/s/6u0j7842bZL8U3lowkVCjA"
+            - listitem [ref=e106]:
+              - link "今日辟谣" [ref=e107] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1856277885673975061
+              - link "北京网站辟谣平台" [ref=e108] [cursor=pointer]:
+                - /url: http://www.bjjubao.org.cn/node_1606.html
+              - link "互联网联合辟谣平台" [ref=e109] [cursor=pointer]:
+                - /url: https://www.piyao.org.cn/
+          - list [ref=e110]:
+            - listitem [ref=e111]:
+              - link "北京“八站两场”新春文化市集开市" [ref=e113] [cursor=pointer]:
+                - /url: https://bqbdzb.bjd.com.cn/bjqn/mobile/2026/20260205/20260205_003/content_20260205_003_4.htm?time=1770274583737
+            - listitem [ref=e114]:
+              - link "120余场活动将在\"八站两场\"上演 让旅客带上北京礼物出发" [ref=e115] [cursor=pointer]:
+                - /url: https://bjrbdzb.bjd.com.cn/bjwb/mobile/2026/20260203/20260203_006/content_20260203_006_1.htm?storyId=s698187fee4b0687a2890b0a9&userID=dde497d7ad91091e,0&isshare=1&channelId=5b165687a010550e5ddc0e72&columnId=5f09537de4b086b26e065412&originalId=CO698187fdd5dedd6a22dade54&time=1770274762660
+            - listitem [ref=e116]:
+              - link "苏翊鸣首跳失误摔倒拿到22分 最后一跳逆转晋级决赛" [ref=e117] [cursor=pointer]:
+                - /url: " https://haokan.baidu.com/v?vid=16998880634695308879&backflow=1&pd=d_push&pagepd=d_push"
+            - listitem [ref=e118]:
+              - link "比尔·盖茨公开回应，“为我所做的一切道歉”" [ref=e119] [cursor=pointer]:
+                - /url: https://haokan.baidu.com/v?vid=7654268248797115556&backflow=1&pd=d_push&pagepd=d_push
+            - listitem [ref=e120]:
+              - link "英国前驻美大使卷入爱泼斯坦案，斯塔默道歉" [ref=e121] [cursor=pointer]:
+                - /url: https://haokan.baidu.com/v?vid=15372149449839029786&backflow=1&pd=d_push&pagepd=d_push
+            - listitem [ref=e122]:
+              - link "伊朗核问题谈判代表团抵达阿曼首都 将与美代表团进行谈判" [ref=e123] [cursor=pointer]:
+                - /url: https://haokan.baidu.com/v?vid=3897966740759721369&backflow=1&pd=d_push&pagepd=d_push
+          - list
+      - generic [ref=e124]:
+        - generic [ref=e125]:
+          - generic [ref=e126]:
+            - generic:
+              - link [ref=e127] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link [ref=e129] [cursor=pointer]:
+                - /url: javascript:void(0);
+            - link [ref=e132] [cursor=pointer]:
+              - /url: http://pic.people.com.cn/n1/2026/0206/c1016-40660709.html
+              - img [ref=e133]
+            - generic [ref=e135]:
+              - link "8" [ref=e136] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "7" [ref=e137] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "6" [ref=e138] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "5" [ref=e139] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "4" [ref=e140] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "3" [ref=e141] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "2" [ref=e142] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "1" [ref=e143] [cursor=pointer]:
+                - /url: javascript:void(0);
+            - link "恭王府里赏年画" [ref=e145] [cursor=pointer]:
+              - /url: http://pic.people.com.cn/n1/2026/0206/c1016-40660709.html
+              - strong [ref=e146]: 恭王府里赏年画
+          - list [ref=e147]:
+            - link [ref=e148] [cursor=pointer]:
+              - /url: http://www.qstheory.cn/zt2020/llxjj/index.htm
+        - generic [ref=e151]:
+          - generic [ref=e152]:
+            - heading "热搜新闻词HOT WORDS" [level=3] [ref=e153]
+            - text: .
+          - list [ref=e155]:
+            - listitem [ref=e156]:
+              - link "激情冰雪 跃动中国" [ref=e157] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E6%BF%80%E6%83%85%E5%86%B0%E9%9B%AA%20%E8%B7%83%E5%8A%A8%E4%B8%AD%E5%9B%BD
+            - listitem [ref=e158]:
+              - link "多地新年氛围感已拉满" [ref=e159] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E5%A4%9A%E5%9C%B0%E6%96%B0%E5%B9%B4%E6%B0%9B%E5%9B%B4%E6%84%9F%E5%B7%B2%E6%8B%89%E6%BB%A1
+            - listitem [ref=e160]:
+              - link "年轻人青睐“新三金”" [ref=e161] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E5%B9%B4%E8%BD%BB%E4%BA%BA%E9%9D%92%E7%9D%90%E2%80%9C%E6%96%B0%E4%B8%89%E9%87%91%E2%80%9D
+            - listitem [ref=e162]:
+              - link "中国汽车将不再使用隐藏式车门把手" [ref=e163] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E6%B1%BD%E8%BD%A6%E5%B0%86%E4%B8%8D%E5%86%8D%E4%BD%BF%E7%94%A8%E9%9A%90%E8%97%8F%E5%BC%8F%E8%BD%A6%E9%97%A8%E6%8A%8A%E6%89%8B
+            - listitem [ref=e164]:
+              - link "周生生足金挂坠事件检测结果公布" [ref=e165] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E5%91%A8%E7%94%9F%E7%94%9F%E8%B6%B3%E9%87%91%E6%8C%82%E5%9D%A0%E4%BA%8B%E4%BB%B6%E6%A3%80%E6%B5%8B%E7%BB%93%E6%9E%9C%E5%85%AC%E5%B8%83
+            - listitem [ref=e166]:
+              - link "博主自制科幻战甲 外交部私信想转发" [ref=e167] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E5%8D%9A%E4%B8%BB%E8%87%AA%E5%88%B6%E7%A7%91%E5%B9%BB%E6%88%98%E7%94%B2%20%E5%A4%96%E4%BA%A4%E9%83%A8%E7%A7%81%E4%BF%A1%E6%83%B3%E8%BD%AC%E5%8F%91
+            - listitem [ref=e168]:
+              - link "苏翊鸣惊天逆袭晋级决赛" [ref=e169] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E8%8B%8F%E7%BF%8A%E9%B8%A3%E6%83%8A%E5%A4%A9%E9%80%86%E8%A2%AD%E6%99%8B%E7%BA%A7%E5%86%B3%E8%B5%9B
+            - listitem [ref=e170]:
+              - link "景区发巨额年终奖 有员工领到45万" [ref=e171] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E6%99%AF%E5%8C%BA%E5%8F%91%E5%B7%A8%E9%A2%9D%E5%B9%B4%E7%BB%88%E5%A5%96%20%E6%9C%89%E5%91%98%E5%B7%A5%E9%A2%86%E5%88%B045%E4%B8%87
+            - listitem [ref=e172]:
+              - link "国家卫健委赴湖北督查精神病院问题" [ref=e173] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E5%9B%BD%E5%AE%B6%E5%8D%AB%E5%81%A5%E5%A7%94%E8%B5%B4%E6%B9%96%E5%8C%97%E7%9D%A3%E6%9F%A5%E7%B2%BE%E7%A5%9E%E7%97%85%E9%99%A2%E9%97%AE%E9%A2%98
+            - listitem [ref=e174]:
+              - link "冬奥圣火在米兰首棒传递者是中国人" [ref=e175] [cursor=pointer]:
+                - /url: https://www.baidu.com/s?wd=%E5%86%AC%E5%A5%A5%E5%9C%A3%E7%81%AB%E5%9C%A8%E7%B1%B3%E5%85%B0%E9%A6%96%E6%A3%92%E4%BC%A0%E9%80%92%E8%80%85%E6%98%AF%E4%B8%AD%E5%9B%BD%E4%BA%BA
+    - generic [ref=e176]:
+      - generic [ref=e178]:
+        - heading "北京新闻LOCAL NEWS" [level=2] [ref=e179]:
+          - generic [ref=e180]: 北京新闻
+          - text: LOCAL NEWS
+        - generic [ref=e182] [cursor=pointer]: 切换城市
+      - list [ref=e223]:
+        - listitem [ref=e224]:
+          - link "“和你在北京”首文科集团2026贺岁文化季启幕" [ref=e226] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856273411847184871
+        - listitem [ref=e227]:
+          - link "欢乐过大年·乡“亲”京郊行｜来门头沟王平镇沉浸..." [ref=e228] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856282281999238307
+        - listitem [ref=e229]:
+          - link "北京南站焕新记：今年春运，为何这里的脚步开始从..." [ref=e230] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856267308298568311
+        - listitem [ref=e231]:
+          - link "知晓｜-3~8℃，不再“拼手速”，北京线上国补..." [ref=e232] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856055042723219704
+        - listitem [ref=e233]:
+          - link "石景山区老山街道举办2026年新春团拜会" [ref=e234] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856247239122251777
+        - listitem [ref=e235]:
+          - link "石景山区发布四大板块600余场次春节假日活动" [ref=e236] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856268661511592280
+        - listitem [ref=e237]:
+          - link "候车间隙5分钟可达，北京西站北广场办起“西西市..." [ref=e238] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856346329781985476
+        - listitem [ref=e239]:
+          - link "瓣瓣同心丨在京津冀交界处赶大集，体验三地特色" [ref=e240] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856357465070615301
+      - generic [ref=e185]:
+        - heading "新闻图片" [level=3] [ref=e187]
+        - generic [ref=e243]:
+          - link [ref=e244] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856203387444150330
+            - img [ref=e245]
+          - link "千城百县看中国·冰雪之约｜北京门头沟：嗨玩冰雪..." [ref=e246] [cursor=pointer]:
+            - /url: http://baijiahao.baidu.com/s?id=1856203387444150330
+      - generic [ref=e195]:
+        - generic [ref=e196]:
+          - heading "新闻资讯" [level=3] [ref=e197]
+          - text: .
+        - list [ref=e248]:
+          - listitem [ref=e249]:
+            - link "石景山立春鞭打春牛" [ref=e250] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856165072392538074
+          - listitem [ref=e251]:
+            - link "春节保供 北京新发地市场日均检测1500批次农..." [ref=e252] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856358345997703316
+          - listitem [ref=e253]:
+            - link "约占全市的68%！事关首都都市圈的北京生态涵养..." [ref=e254] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856270614275103710
+          - listitem [ref=e255]:
+            - link "北京朝阳十八里店地区总工会举办平安喜乐珍珠画创..." [ref=e256] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856262430974484067
+          - listitem [ref=e257]:
+            - link "瓣瓣同心｜“五花马”盆栽应景，年宵花迎来新品种..." [ref=e258] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856264508577897168
+          - listitem [ref=e259]:
+            - link "年味儿渐浓，绿心公园两大主题活动邀市民共贺新春" [ref=e260] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856268032003168014
+          - listitem [ref=e261]:
+            - link "大兴区副区长杨峻岭：“无事不扰”清单企业纳入率..." [ref=e262] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856349159086309178
+    - list [ref=e198]:
+      - listitem [ref=e199] [cursor=pointer]:
+        - link:
+          - /url: javascript:void(0);
+      - listitem [ref=e200] [cursor=pointer]:
+        - link "辟谣" [ref=e201]:
+          - /url: http://www.piyao.org.cn/yybgt/index.htm
+      - listitem [ref=e202] [cursor=pointer]:
+        - link "举报" [ref=e203]:
+          - /url: http://www.12377.cn
+      - listitem [ref=e204] [cursor=pointer]:
+        - link "收藏本站" [ref=e205]:
+          - /url: javascript:void(0);
+      - listitem [ref=e206] [cursor=pointer]:
+        - link "搜索" [ref=e207]:
+          - /url: javascript:void(0);
+      - listitem [ref=e208] [cursor=pointer]:
+        - link "用户反馈" [ref=e209]:
+          - /url: javascript:void(0);
+      - listitem:
+        - paragraph:
+          - textbox [ref=e211]: 输入搜索词
+    - generic [ref=e264]:
+      - heading "国内China" [level=2] [ref=e267]:
+        - link "国内" [ref=e268] [cursor=pointer]:
+          - /url: /guonei
+        - text: China
+      - generic [ref=e269]:
+        - list [ref=e270]:
+          - listitem [ref=e271]:
+            - link "粤博这项大展获广泛关注！“互利天下：广东外贸一千年.." [ref=e273] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856246925533497925
+          - listitem [ref=e274]:
+            - link "上海世赛“一校一队”活动正式启动，62所院校参与结.." [ref=e275] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856268788784427897
+          - listitem [ref=e276]:
+            - link "「“薪火”第一期」6万枚臂章，藏着上海解放前夕怎样.." [ref=e277] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856340046317081098
+          - listitem [ref=e278]:
+            - link "福建有“种”走天下丨一条溪鱼，潜力有多大？" [ref=e279] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856242267813342687
+          - listitem [ref=e280]:
+            - link "谁是“沪上辣王”？这个周末，外滩等你来挑战！免费入.." [ref=e281] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856341299354126268
+          - listitem [ref=e282]:
+            - link "视频丨复古客座车厢化身“流动舞台” 邀你共赴一场奇.." [ref=e283] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856352967445960134
+        - list [ref=e284]:
+          - listitem [ref=e285]:
+            - link "“电影+”持续释放拉升消费动能 “影视+文旅”成为.." [ref=e287] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856254285327113524
+          - listitem [ref=e288]:
+            - link "魔都眼｜在上海过年：八骏图冰雕、外籍演员英歌舞，年.." [ref=e289] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856152207227122194
+          - listitem [ref=e290]:
+            - link "缙云丨项德林：勒是雾都！" [ref=e291] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1855782928831944292
+          - listitem [ref=e292]:
+            - link "有奖互动｜邀你来晒宝，为家乡年味广货代言！" [ref=e293] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856295446046188207
+          - listitem [ref=e294]:
+            - link "看展览｜上海的乡愁：6位摄影家眼里的跨越50年的市.." [ref=e295] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856162744849158589
+          - listitem [ref=e296]:
+            - link "缙云·竹之草木札记丨刘竹：一棵会结“灯笼”的树" [ref=e297] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856235976747400141
+      - generic [ref=e299]:
+        - heading "国内图片" [level=3] [ref=e301]
+        - generic [ref=e303]:
+          - generic [ref=e305]:
+            - link "女子在机场买相机发现logo是黄金，影石：黄金标是.." [ref=e306] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856188013701407558
+              - img "女子在机场买相机发现logo是黄金，影石：黄金标是.." [ref=e307]
+            - link "女子在机场买相机发现logo是黄金，影石：黄金标是.." [ref=e308] [cursor=pointer]:
+              - /url: http://baijiahao.baidu.com/s?id=1856188013701407558
+          - generic [ref=e309]:
+            - generic [ref=e310]:
+              - link "年销5亿！这家“吵”了33年的夫妻面馆，一口气“炒.." [ref=e311] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1856296345374085954
+                - img [ref=e312]
+              - link "年销5亿！这家“吵”了33年的夫妻面馆，一口气“炒.." [ref=e313] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1856296345374085954
+            - generic [ref=e314]:
+              - link "好滋味陪伴，向阳而行！“致敬劳动者·爱心送年饭”第.." [ref=e315] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1856355578737720049
+                - img [ref=e316]
+              - link "好滋味陪伴，向阳而行！“致敬劳动者·爱心送年饭”第.." [ref=e317] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1856355578737720049
+      - generic [ref=e318]:
+        - generic [ref=e319]:
+          - heading "图文资讯" [level=3] [ref=e321]
+          - generic [ref=e323]:
+            - generic:
+              - generic [ref=e324]:
+                - link "红十字会携手青岛城运共启民生健康服务新篇章——“9.." [ref=e325] [cursor=pointer]:
+                  - /url: http://baijiahao.baidu.com/s?id=1856275488856254556
+                  - img [ref=e326]
+                - link "红十字会携手青岛城运共启民生健康服务新篇章——“9.." [ref=e327] [cursor=pointer]:
+                  - /url: http://baijiahao.baidu.com/s?id=1856275488856254556
+              - generic [ref=e328]:
+                - link "人保寿险黄山中支开展腊八节暖心早餐活动——传承民俗.." [ref=e329] [cursor=pointer]:
+                  - /url: http://baijiahao.baidu.com/s?id=1856187312591363574
+                  - img [ref=e330]
+                - link "人保寿险黄山中支开展腊八节暖心早餐活动——传承民俗.." [ref=e331] [cursor=pointer]:
+                  - /url: http://baijiahao.baidu.com/s?id=1856187312591363574
+        - generic [ref=e332]:
+          - heading "热门点击" [level=3] [ref=e334]
+          - list [ref=e336]:
+            - listitem [ref=e337]:
+              - link "以青春之名，护红色热土 周南实验中学学子开展中国共.." [ref=e339] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1856104264794588359
+            - listitem [ref=e340]:
+              - link "“05后”策展人以影像呼吁环保守护飞羽" [ref=e342] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1855817685067153381
+            - listitem [ref=e343]:
+              - link "西罗园街道：旧衣新生添暖意 环保理念入人心" [ref=e345] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1856079098581323237
+            - listitem [ref=e346]:
+              - link "科技、金融、环保、文创如何赋能发展？委员通道勾勒“.." [ref=e348] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1856301221462194306
+            - listitem [ref=e349]:
+              - link "迎新话环保！杭州米市巷街道手把手教居民垃圾分类" [ref=e351] [cursor=pointer]:
+                - /url: http://baijiahao.baidu.com/s?id=1856183884551747921
+  - generic [ref=e213]:
+    - link "用户协议" [ref=e352] [cursor=pointer]:
+      - /url: //news-bos.cdn.bcebos.com/mvideo/baidu_news_protocol.html
+    - link "隐私策略" [ref=e353] [cursor=pointer]:
+      - /url: https://news-bos.cdn.bcebos.com/mvideo/privacy.html
+    - link "企业推广" [ref=e354] [cursor=pointer]:
+      - /url: http://e.baidu.com/?refer=1268
+    - link "投诉中心" [ref=e355] [cursor=pointer]:
+      - /url: //help.baidu.com/newadd?prod_id=5&category=1
+    - link "营业执照" [ref=e356] [cursor=pointer]:
+      - /url: //b.bdstatic.com/searchbox/image/gcp/20230526/3812451844.jpg
+    - text: 京ICP证030173号 京公网安备11000002000001号 《互联网新闻信息服务许可》编号：11220180008 《互联网宗教信息服务许可证》编号：京（2022）0000043 ©2026Baidu
+    - link "使用百度前必读" [ref=e357] [cursor=pointer]:
+      - /url: //www.baidu.com/duty/
+    - link [ref=e358] [cursor=pointer]:
+      - /url: https://cn.china.cn/
+    - link [ref=e359] [cursor=pointer]:
+      - /url: http://cyberpolice.mps.gov.cn/wfjb/
+    - link [ref=e360] [cursor=pointer]:
+      - /url: http://www.bjjubao.org/

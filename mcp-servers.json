@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    },
+    "mymcp": {
+    "command": "node",
+    "args": [
+      "test/fastmcp.js"
+    ]
+     }
+}
+}

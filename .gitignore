@@ -1,0 +1,12 @@
+# 帮我生成gitignore
+# 这是一个Node.js项目，使用TypeScript编写，包含一些常见的文件和目录需要忽略
+# 忽略node_modules目录
+node_modules/
+# 忽略dist目录
+dist/
+# 忽略编译后的JavaScript文件
+*.js
+test/
+.env
+.env.local
+.qoder/

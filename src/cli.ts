@@ -1,0 +1,110 @@
+import * as readline from 'readline';
+import chalk from 'chalk';
+import { Conversation } from './core/conversation.ts';
+import { Agent } from './core/agent.ts';
+import { cmdTool, editTool, writeTool, globTool, grepTool, readTool, searchTool, createTodoWriteTool } from './tools/builtin/index.ts';
+import { TodoManager } from './todo/manager.ts';
+import {builtinSubagents} from './subagent/index.ts';
+// const SYSTEM_PROMPT = `You are a helpful assistant.`;
+const SYSTEM_PROMPT = `
+You are a helpful coding assistant with access to tools.
+You can execute bash commands, read/write files, and search code.
+IMPORTANT: Use the todo_write tool to track your tasks when working on multi-step tasks.
+- Create a todo list at the start of complex tasks
+- Update task status as you work (pending -> in_progress -> completed)
+- This helps the user see your progress
+
+You can delegate specialized tasks to subagents using the delegate_task tool:
+- explorer: For searching and exploring the codebase
+- researcher: For reading and understanding code
+- planner: For creating implementation plans
+`;
+
+function createReadline(): readline.Interface {
+  return readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+}
+
+function question(rl: readline.Interface, prompt: string): Promise<string> {
+  return new Promise((resolve) => {
+    rl.question(prompt, resolve);
+  });
+}
+
+export async function runCLI(): Promise<void> {
+  const todoManager = new TodoManager();
+  const conversation = new Conversation(SYSTEM_PROMPT);
+  const agent = new Agent(SYSTEM_PROMPT);
+
+  // # Register all builtin tools
+  // agent.registerTool(bashTool);
+  agent.registerTool(cmdTool);
+  agent.registerTool(readTool);
+  agent.registerTool(writeTool);
+  agent.registerTool(editTool);
+  agent.registerTool(globTool);
+  agent.registerTool(grepTool);
+  agent.registerTool(searchTool);
+  // agent.registerTool(createTodoWriteTool(todoManager));
+
+
+    // Register builtin subagents
+  // for (const subagent of builtinSubagents) {
+  //   agent.registerSubagent(subagent);
+  // }
+  // agent.initializeSubagents();
+  //从配置中加载MCP服务
+  await agent.loadMCPServers();
+  const rl = createReadline();
+
+  console.log(chalk.cyan('你好，我是一个有用的助手'));
+  console.log(chalk.gray('输入 "exit" 退出。\n'));
+
+  // List MCP servers
+  const mcpServers = agent.listMCPServers();
+  if (mcpServers.length > 0) {
+    // console.log(chalk.gray(`MCP Servers: ${mcpServers.join(', ')}`));
+  }
+
+  while (true) {
+    const input = await question(rl, chalk.green('> '));
+    const trimmed = input.trim();
+
+    if (!trimmed) {
+      continue;
+    }
+
+    if (trimmed.toLowerCase() === 'exit') {
+      console.log(chalk.gray('Goodbye!'));
+      await agent.shutdown();
+      break;
+    }
+
+    conversation.addUser(trimmed);
+
+    try {
+      // process.stdout.write(chalk.blue('Assistant: '));
+
+      // let response = '';
+      // for await (const chunk of agent.streamChat(conversation.getMessages())) {
+      //   process.stdout.write(chunk);
+      //   response += chunk;
+      // }
+
+      // console.log('\n');
+      // conversation.addAssistant(response);
+
+      //非流式输出
+       const response = await agent.run(trimmed);
+       console.log(chalk.green('\nAssistant:'), response);
+       console.log();
+    } catch (error) {
+      console.error(chalk.red('\nError:'), error instanceof Error ? error.message : error);
+      console.log();
+    }
+  }
+
+  rl.close();
+}
