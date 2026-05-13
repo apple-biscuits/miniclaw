@@ -43,10 +43,10 @@ export async function runCLI(): Promise<void> {
   agent.registerTool(cmdTool);
   agent.registerTool(readTool);
   agent.registerTool(writeTool);
-  agent.registerTool(editTool);
-  agent.registerTool(globTool);
-  agent.registerTool(grepTool);
-  agent.registerTool(searchTool);
+  // agent.registerTool(editTool);
+  // agent.registerTool(globTool);
+  // agent.registerTool(grepTool);
+  // agent.registerTool(searchTool);
   // agent.registerTool(createTodoWriteTool(todoManager));
 
 
@@ -56,20 +56,20 @@ export async function runCLI(): Promise<void> {
   // }
   // agent.initializeSubagents();
   //从配置中加载MCP服务
-  await agent.loadMCPServers();
+  // await agent.loadMCPServers();
   const rl = createReadline();
 
-  console.log(chalk.cyan('你好，我是一个有用的助手'));
+  console.log(chalk.cyan('你好，我是miniclaw'));
   console.log(chalk.gray('输入 "exit" 退出。\n'));
 
   // List MCP servers
-  const mcpServers = agent.listMCPServers();
-  if (mcpServers.length > 0) {
-    // console.log(chalk.gray(`MCP Servers: ${mcpServers.join(', ')}`));
-  }
+  // const mcpServers = agent.listMCPServers();
+  // if (mcpServers.length > 0) {
+  //   // console.log(chalk.gray(`MCP Servers: ${mcpServers.join(', ')}`));
+  // }
 
   while (true) {
-    const input = await question(rl, chalk.green('> '));
+    const input = await question(rl, chalk.green('>>> '));
     const trimmed = input.trim();
 
     if (!trimmed) {
@@ -85,21 +85,35 @@ export async function runCLI(): Promise<void> {
     conversation.addUser(trimmed);
 
     try {
-      // process.stdout.write(chalk.blue('Assistant: '));
+      process.stdout.write(chalk.green('\nAssistant: '));
 
-      // let response = '';
-      // for await (const chunk of agent.streamChat(conversation.getMessages())) {
-      //   process.stdout.write(chunk);
-      //   response += chunk;
-      // }
+      let fullResponse = '';
+      let isProcessingTool = false;
+      let finalUsage: TokenUsage | undefined = undefined;
+      
+      for await (const chunk of agent.runStream(trimmed)) {
+        if (typeof chunk === 'string') {
+          // Regular content chunk - output immediately for streaming effect
+          process.stdout.write(chunk);
+          fullResponse += chunk;
+        } else if ('toolCall' in chunk) {
+          // A tool call was made - we need to indicate this to the user
+          if (!isProcessingTool) {
+            isProcessingTool = true;
+            process.stdout.write('\n' + chalk.yellow('[正在处理工具调用...]'));
+          }
+        } else if ('usage' in chunk) {
+          // Token usage information
+          finalUsage = chunk.usage;
+        }
+      }
 
-      // console.log('\n');
-      // conversation.addAssistant(response);
-
-      //非流式输出
-       const response = await agent.run(trimmed);
-       console.log(chalk.green('\nAssistant:'), response);
-       console.log();
+      // Display token usage at the end
+      if (finalUsage) {
+        console.log(chalk.blue(`\n[Token Usage - Input: ${finalUsage.promptTokens}, Output: ${finalUsage.completionTokens}, Total: ${finalUsage.totalTokens}]`));
+      }
+      
+      console.log('\n');
     } catch (error) {
       console.error(chalk.red('\nError:'), error instanceof Error ? error.message : error);
       console.log();

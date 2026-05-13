@@ -16,7 +16,17 @@ export interface ToolCall {
   };
 }
 
+export interface TokenUsage {
+  promptTokens: number;
+  completionTokens: number;
+  totalTokens: number;
+}
+
 export interface LLMResponse {
   content: string | null;
   toolCalls?: ToolCall[];
+}
+
+export interface LLMResponseWithUsage extends LLMResponse {
+  usage: TokenUsage;
 }

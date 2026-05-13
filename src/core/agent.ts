@@ -89,7 +89,78 @@ export class Agent {
       // No tool calls, we have a final response
       const content = response.content || '';
       this.conversation.addAssistant(content);
+      
+      // Log token usage
+      console.log(chalk.blue(`\n[Token Usage - Input: ${response.usage.promptTokens}, Output: ${response.usage.completionTokens}, Total: ${response.usage.totalTokens}]`));
+      
       return content;
+    }
+  }
+
+  // New streaming method
+  async *runStream(userInput: string): AsyncGenerator<string | { toolCall: ToolCall } | { usage: TokenUsage }> {
+    this.conversation.addUser(userInput);
+
+    while (true) {
+      const response = await this.client.chatWithTools(
+        this.conversation.getMessages(),
+        this.tools.getDefinitions()
+      );
+
+      // If there are tool calls, execute them
+      if (response.toolCalls && response.toolCalls.length > 0) {
+        // Add assistant message with tool calls
+        this.conversation.addAssistantWithToolCalls(response.toolCalls);
+
+        // Execute each tool call and yield the result
+        for (const toolCall of response.toolCalls) {
+          console.log(chalk.yellow(`\n[Tool: ${toolCall.function.name}]`));
+
+          try {
+            const args = JSON.parse(toolCall.function.arguments);
+            console.log(chalk.gray(JSON.stringify(args, null, 2)));
+
+            const result = await this.tools.execute(toolCall.function.name, args);
+
+            // Show truncated result
+            const displayResult = result.length > 500
+              ? result.substring(0, 500) + '...(truncated)'
+              : result;
+            console.log(chalk.gray(displayResult));
+
+            // Add tool result to conversation
+            this.conversation.addToolResult(toolCall.id, result);
+            
+            // Yield tool call information
+            yield { toolCall };
+          } catch (error) {
+            const errorMsg = `Error: ${(error as Error).message}`;
+            console.log(chalk.red(errorMsg));
+            this.conversation.addToolResult(toolCall.id, errorMsg);
+          }
+        }
+
+        // Continue the loop to get the next response
+        continue;
+      }
+
+      // No tool calls, we can stream the content
+      if (response.content) {
+        // Add to conversation history
+        this.conversation.addAssistant(response.content);
+        
+        // Stream the content using the new streamChat method
+        for await (const chunk of this.client.streamChat(this.conversation.getMessages())) {
+          if (chunk.content) {
+            yield chunk.content;
+          } else if (chunk.usage) {
+            yield { usage: chunk.usage };
+          }
+        }
+      }
+
+      // End of stream
+      return;
     }
   }
 
