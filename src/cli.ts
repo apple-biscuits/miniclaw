@@ -5,6 +5,7 @@ import { Agent } from './core/agent.ts';
 import { cmdTool, editTool, writeTool, globTool, grepTool, readTool, searchTool, createTodoWriteTool } from './tools/builtin/index.ts';
 import { TodoManager } from './todo/manager.ts';
 import {builtinSubagents} from './subagent/index.ts';
+import type {TokenUsage} from './llm/types.ts';
 import fs from 'fs';
 // const SYSTEM_PROMPT = `You are a helpful assistant.`;
 const SYSTEM_PROMPT = `
@@ -97,7 +98,6 @@ export async function runCLI(): Promise<void> {
       break;
     }
 
-    // conversation.addUser(trimmed);
 
     try {
       process.stdout.write(chalk.green('\nAssistant: '));

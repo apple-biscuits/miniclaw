@@ -3,7 +3,7 @@ import { LLMClient } from '../llm/client.ts';
 import { Conversation } from './conversation.ts';
 import { ToolRegistry } from '../tools/registry.ts'
 import type { Tool, ToolCall } from '../tools/types.ts';
-import type { Message } from '../llm/types.ts';
+import type { Message,TokenUsage } from '../llm/types.ts';
 import { MCPServerManager } from '../mcp/server.ts';
 import { loadMCPConfig } from '../config/env.ts';
 import type { MCPServerConfig } from '../mcp/types.ts';
@@ -99,6 +99,14 @@ export class Agent {
 
   // New streaming method
   async *runStream(userInput: string): AsyncGenerator<string | { toolCall: ToolCall } | { usage: TokenUsage }> {
+    //先判断上下文窗口是否过长，如果过长则进行压缩
+    if (this.conversation.isTooLong()) {
+      console.log(chalk.yellow('[Context window is too long, compressing...]'));
+      await this.conversation.autoCompactCompress();
+      console.log(chalk.yellow('[Context window compressed]\n'));
+      
+
+    }
     this.conversation.addUser(userInput);
 
     while (true) {
