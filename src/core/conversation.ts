@@ -20,7 +20,7 @@ export class Conversation {
   //判断messages数组的长度，如果超过20条，则需要压缩
   //测试阶段写改成5条，正式阶段再改回20条
   isTooLong(): boolean {
-    return this.messages.length > 5;
+    return this.messages.length > 10;
   }
   //snip压缩，直接从 messages[] 头部删除最旧的若干轮对话（保留系统消息和最近 N 轮）。
   // 压缩算法有损且粗糙，但零延迟、零成本，是最后的紧急兜底手段。
@@ -30,13 +30,42 @@ export class Conversation {
   //   }
   //   this.messages = this.messages.slice(-10);
   // }
-  /***
-   * AutoCompact（中成本） ：当上下文剩余 token 低于 13,000 时触发（留出压缩本身所需的空间）。
-   * 该算法会调用一个专门的压缩模型（如 gpt-3.5-turbo-16k）来重新总结和压缩对话历史，生成一个更短的系统提示。
-   ***/
+  
     async autoCompactCompress(): Promise<void> {
     // 计算当前上下文的 token 使用情况
-    const tokenUsage = this.calculateTokenUsage();
+    // const tokenUsage = this.calculateTokenUsage();
+      // 1. 将历史消息格式化为纯文本，以便 LLM 理解
+      // 我们需要保留 Role, Content, 以及 Tool Calls 的关键信息
+      let historyText = "";
+      for (const msg of this.messages) {
+        if (msg.role === 'system') continue; // 跳过原有的 system prompt，我们稍后单独处理
+
+        historyText += `\n[${msg.role.toUpperCase()}]: `;
+
+        if (msg.content) {
+          historyText += msg.content;
+        }
+
+        if (msg.tool_calls && msg.tool_calls.length > 0) {
+          historyText += "\n[TOOL CALLS]: ";
+          for (const tc of msg.tool_calls) {
+            try {
+              // 尝试解析参数，使其更易读，或者直接保留 JSON
+              const args = typeof tc.function.arguments === 'string'
+                ? tc.function.arguments
+                : JSON.stringify(tc.function.arguments);
+              historyText += `\n- Function: ${tc.function.name}, Args: ${args}`;
+            } catch (e) {
+              historyText += `\n- Function: ${tc.function.name}, Args: (Error parsing)`;
+            }
+          }
+        }
+
+        if (msg.tool_call_id) {
+          historyText += `\n[TOOL RESULT ID: ${msg.tool_call_id}]: ${msg.content}`;
+        }
+        historyText += "\n---";
+      }
       const AUTOCOMPACT_PROMPT = `
       你是一个对话历史压缩助手。将以下对话压缩为结构化摘要。
       必须包含以下章节，不得省略：
@@ -57,19 +86,46 @@ export class Conversation {
       （已经做出的技术决策和原因，避免重复讨论）
 
       压缩后长度不得超过 20,000 token。
+      ---
+      对话历史如下:
+      ${historyText}
     `;
 
-      this.messages=[
-        { role: 'system', content: AUTOCOMPACT_PROMPT },
-        ...this.messages
-      ]
-      const llmClient = new LLMClient();
-      const {content}=await llmClient.chat(this.messages);
-      console.log("压缩结果：\n",content);
-      
-      //将压缩结果作为新的系统提示，并清空对话历史（保留系统提示）
-      this.systemPrompt = content;
-      this.messages=[];
+      try {
+        // 3. 调用 LLM 进行压缩
+        // 注意：这里我们只发送一条 User 消息，包含 Prompt 和历史文本
+        // 这样可以避免角色混淆
+        const llmClient = new LLMClient();
+        const response = await llmClient.chat([
+          { role: 'user', content: AUTOCOMPACT_PROMPT }
+        ]);
+
+        const summary = response.content;
+        console.log("[Conversation] 压缩完成\n", summary);
+
+        // 4. 更新 Conversation 状态
+        // 策略：清空旧消息，将摘要作为新的 System Prompt 或第一条 User 消息
+        // 推荐：作为 System Prompt 的一部分，或者保留最近 1-2 条消息以防上下文断裂
+
+        this.systemPrompt = `${this.systemPrompt}\n\n[History Summary]:\n${summary}`;
+
+        // 可选：保留最后一条用户消息，以便 AI 知道当前紧接着要回答什么
+        // 如果 messages 为空，则完全清空
+        if (this.messages.length > 0) {
+          const lastUserMsg = this.messages[this.messages.length - 1];
+          if (lastUserMsg.role === 'user') {
+            this.messages = [lastUserMsg];
+          } else {
+            this.messages = [];
+          }
+        } else {
+          this.messages = [];
+        }
+
+      } catch (error) {
+        console.error("[Conversation] 压缩失败:", error);
+        // 失败时不要清空消息，避免数据丢失
+      }
   
     
     }
