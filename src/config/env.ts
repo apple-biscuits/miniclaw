@@ -10,9 +10,12 @@ import type { MCPServerConfig } from '../mcp/types.ts';
 // };
 
 export const config = {
-  apiKey: 'sk-mbpijkszcptgfxeluwcpkzyskgfajecczetrmopvuoakovzm',
-  baseUrl: 'https://api.siliconflow.cn/v1',
-  model: "Qwen/Qwen3-8B",
+  // apiKey: 'sk-mbpijkszcptgfxeluwcpkzyskgfajecczetrmopvuoakovzm',
+  apiKey:'667778d269e1de52f446e523ff7e34ea:OGIwMzc2YmY4NzhlYzI5ZjNmYjBjZTZm',
+  // baseUrl: 'https://api.siliconflow.cn/v1',
+  baseUrl: 'https://maas-coding-api.cn-huabei-1.xf-yun.com/v2',
+  // model: "Qwen/Qwen3-8B",
+  model:"astron-code-latest",
   mcpConfigPath: './mcp-servers.json',
 };
 

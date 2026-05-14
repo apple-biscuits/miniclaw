@@ -16,9 +16,9 @@ export class Agent {
   private mcpManager: MCPServerManager;
   private subagentManager: SubagentManager;
 
-  constructor(systemPrompt: string) {
+  constructor(conversation: Conversation) {
     this.client = new LLMClient();
-    this.conversation = new Conversation(systemPrompt);
+    this.conversation = conversation;
     this.tools = new ToolRegistry();
     this.mcpManager = new MCPServerManager();
     this.subagentManager = new SubagentManager();

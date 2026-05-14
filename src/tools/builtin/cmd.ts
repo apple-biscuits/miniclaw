@@ -3,14 +3,14 @@ import type { Tool } from '../types.ts';
 
 export const cmdTool: Tool = {
   definition: {
-    name: 'bash',
-    description: 'Execute a bash command and return the output',
+    name: 'powershell',
+    description: 'Execute a PowerShell command on windows and return the output!must be powershell command',
     parameters: {
       type: 'object',
       properties: {
         command: {
           type: 'string',
-          description: 'The bash command to execute',
+          description: 'The PowerShell command to execute',
         },
       },
       required: ['command'],
@@ -19,9 +19,13 @@ export const cmdTool: Tool = {
 
   async execute(args: Record<string, unknown>): Promise<string> {
     const command = args.command as string;
-
+    // const encoded = Buffer.from(command, 'utf16le').toString('base64');
     return new Promise((resolve) => {
-      const proc = spawn('bash', ['-c', command], {
+      const proc = spawn('powershell', [        
+        '-NoProfile',       // 不加载用户 profile，启动更快
+        '-NonInteractive',  // 不等待用户输入
+        '-Command',
+        command], {
         cwd: process.cwd(),
         env: process.env,
       });

@@ -5,6 +5,7 @@ import { Agent } from './core/agent.ts';
 import { cmdTool, editTool, writeTool, globTool, grepTool, readTool, searchTool, createTodoWriteTool } from './tools/builtin/index.ts';
 import { TodoManager } from './todo/manager.ts';
 import {builtinSubagents} from './subagent/index.ts';
+import fs from 'fs';
 // const SYSTEM_PROMPT = `You are a helpful assistant.`;
 const SYSTEM_PROMPT = `
 You are a helpful coding assistant with access to tools.
@@ -34,9 +35,21 @@ function question(rl: readline.Interface, prompt: string): Promise<string> {
 }
 
 export async function runCLI(): Promise<void> {
+  //获取当前时间搓
+  const timestamp = Date.now();
+  //根据时间错在logs文件夹下生成jsonl格式的日志文件，文件名为时间搓
+  const logFilePath = `./logs/${timestamp}.jsonl`;
+  console.log(chalk.gray(`日志文件路径: ${logFilePath}`));
+  //创建文件
+  try{
+    fs.writeFileSync(logFilePath, '');
+  }catch(error){
+    console.log("日志文件创建失败，失败原因：",error);
+  }
+  
   const todoManager = new TodoManager();
-  const conversation = new Conversation(SYSTEM_PROMPT);
-  const agent = new Agent(SYSTEM_PROMPT);
+  const conversation = new Conversation(SYSTEM_PROMPT,logFilePath);
+  const agent = new Agent(conversation);
 
   // # Register all builtin tools
   // agent.registerTool(bashTool);
@@ -67,7 +80,9 @@ export async function runCLI(): Promise<void> {
   // if (mcpServers.length > 0) {
   //   // console.log(chalk.gray(`MCP Servers: ${mcpServers.join(', ')}`));
   // }
+  
 
+  console.log(chalk.gray(`日志文件路径: ${logFilePath}`));
   while (true) {
     const input = await question(rl, chalk.green('>>> '));
     const trimmed = input.trim();
@@ -82,7 +97,7 @@ export async function runCLI(): Promise<void> {
       break;
     }
 
-    conversation.addUser(trimmed);
+    // conversation.addUser(trimmed);
 
     try {
       process.stdout.write(chalk.green('\nAssistant: '));
