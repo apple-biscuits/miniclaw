@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "miniclaw",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "test:skills": "ts-node test-skills.ts"
   },
   "keywords": [],
   "author": "",

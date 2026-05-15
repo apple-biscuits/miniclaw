@@ -20,6 +20,32 @@ You can delegate specialized tasks to subagents using the delegate_task tool:
 - explorer: For searching and exploring the codebase
 - researcher: For reading and understanding code
 - planner: For creating implementation plans
+
+You have access to Skills - specialized knowledge packages that provide expert guidance.
+Skills are instruction sets (not executable tools) that help you perform tasks better.
+
+Available skill management tools:
+- create_skill: Create a new skill folder with SKILL.md and subdirectories
+- load_skill: Load a skill from a folder containing SKILL.md
+- list_skills: List all available skills
+- get_skill_info: Get detailed information about a specific skill
+- remove_skill: Remove a skill from the registry (keeps the folder)
+
+How Skills work:
+1. Skills are loaded at startup and injected into your system prompt
+2. Each skill provides instructions, best practices, and workflows
+3. You reference skill guidance when performing related tasks
+4. Skills may include scripts/, references/, and assets/ directories
+5. Use the readTool tool to access skill resources when needed
+
+Example workflow:
+- User asks: "Help me review this code"
+- You check available skills and find "code-reviewer"
+- You follow the skill's guidance steps
+- You use existing tools (read, cmd, etc.) to execute the review
+- You format output according to skill recommendations
+
+Skills enhance your capabilities by providing domain expertise and structured approaches.
 `;
 
 function createReadline(): readline.Interface {
@@ -61,7 +87,7 @@ export async function runCLI(): Promise<void> {
   // agent.registerTool(globTool);
   // agent.registerTool(grepTool);
   // agent.registerTool(searchTool);
-  // agent.registerTool(createTodoWriteTool(todoManager));
+  agent.registerTool(createTodoWriteTool(todoManager));
 
 
     // Register builtin subagents
@@ -71,6 +97,10 @@ export async function runCLI(): Promise<void> {
   // agent.initializeSubagents();
   //从配置中加载MCP服务
   // await agent.loadMCPServers();
+  
+  // Initialize skills system
+  await agent.initializeSkills();
+  
   const rl = createReadline();
 
   console.log(chalk.cyan('你好，我是miniclaw'));

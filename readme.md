@@ -14,6 +14,20 @@
   - `cmd` / `powershell`：执行系统命令。
   - `glob` / `grep` / `search`：搜索文件和代码内容。
   - `todo_write`：管理多步任务进度。
+- **🎯 Skills 系统（Anthropic 标准格式）**
+
+可复用的技能包管理系统，遵循 **Anthropic Agent Skills 标准**：
+- 每个 skill 是一个独立的文件夹
+- 核心是 `SKILL.md` 文件（YAML frontmatter + Markdown 指令）
+- 支持 scripts、references、assets 子目录
+- 渐进式披露机制，高效利用上下文窗口
+- 详见 [SKILLS_QUICKSTART.md](./SKILLS_QUICKSTART.md)
+
+**示例 skills：**
+- `file-operations/` - 文件操作工具集
+- `git-helper/` - Git 操作助手  
+- `code-analyzer/` - 代码质量分析器（含脚本和参考文档）
+
 - **🧠 智能上下文管理**：
   - **自动压缩**：当对话历史过长时，自动使用 LLM 对历史进行结构化摘要，保留关键信息并释放上下文窗口。
   - **Token 统计**：在每次对话结束后显示详细的 Input/Output Token 使用情况。
@@ -60,7 +74,7 @@
 
 启动后，您将进入交互界面：
 
-```text
+```
 你好，我是miniclaw
 输入 "exit" 退出。
 
@@ -84,7 +98,7 @@ tail -f logs/*.jsonl
 
 ## 🏗️ 项目结构
 
-```text
+```
 miniclaw/
 ├── src/
 │   ├── cli.ts            # CLI 入口与交互逻辑
@@ -96,9 +110,15 @@ miniclaw/
 │   │   └── types.ts      # 类型定义
 │   ├── tools/
 │   │   └── builtin/      # 内置工具实现 (read, write, cmd, etc.)
+│   ├── skills/           # Skills 技能系统
+│   │   ├── types.ts      # Skill 类型定义
+│   │   ├── manager.ts    # Skill 管理器
+│   │   └── index.ts      # 导出和工具函数
 │   ├── subagent/         # 子代理模块 (可选)
 │   └── utils/            # 工具函数 (Token 估算等)
+├── skills/               # Skill 存储目录
 ├── logs/                 # 会话日志存储目录
+├── examples/             # 示例代码
 ├── package.json
 └── tsconfig.json
 ```

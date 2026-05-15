@@ -9,12 +9,15 @@ import { loadMCPConfig } from '../config/env.ts';
 import type { MCPServerConfig } from '../mcp/types.ts';
 import { SubagentManager ,createSubagentTool} from '../subagent/index.ts';
 import type { SubagentConfig } from '../subagent/types.ts';
+import { SkillManager, createSkillTools } from '../skills/index.ts';
+
 export class Agent {
   private client: LLMClient;
   private conversation: Conversation;
   private tools: ToolRegistry;
   private mcpManager: MCPServerManager;
   private subagentManager: SubagentManager;
+  private skillManager: SkillManager;
 
   constructor(conversation: Conversation) {
     this.client = new LLMClient();
@@ -22,6 +25,7 @@ export class Agent {
     this.tools = new ToolRegistry();
     this.mcpManager = new MCPServerManager();
     this.subagentManager = new SubagentManager();
+    this.skillManager = new SkillManager();
   }
 
   registerTool(tool: Tool): void {
@@ -230,6 +234,88 @@ export class Agent {
         console.error(chalk.red(`Failed to connect MCP server ${config.name}:`), error);
       }
     }
+  }
+
+  /**
+   * 初始化 skills 系统
+   */
+  async initializeSkills(): Promise<void> {
+    await this.skillManager.initialize();
+    
+    // 注册 skill 管理工具
+    const skillTools = createSkillTools(this.skillManager);
+    for (const tool of skillTools) {
+      this.tools.register(tool);
+    }
+    
+    // 加载已保存的 skills
+    await this.skillManager.loadAllSkills();
+    
+    // 将 loaded skills 的内容注入到 system prompt 中
+    await this.injectSkillsToSystemPrompt();
+    
+    console.log(chalk.green(`Skills system initialized. Loaded ${this.skillManager.getSkillNames().length} skills.`));
+  }
+
+  /**
+   * 将 skills 的内容注入到 system prompt 中
+   * 这是 Anthropic Skills 的标准使用方式 - 作为指令而非工具
+   */
+  private async injectSkillsToSystemPrompt(): Promise<void> {
+    const skills = this.skillManager.getSkills();
+    if (skills.length === 0) {
+      return;
+    }
+
+    const conversation = this.conversation;
+    const currentSystemPrompt = (conversation as any).systemPrompt || '';
+    
+    let skillsSection = '\n\n## Available Skills\n\n';
+    skillsSection += 'You have access to the following specialized skills. ';
+    skillsSection += 'These skills provide detailed instructions and best practices for specific tasks.\n\n';
+
+    for (const skill of skills) {
+      skillsSection += `### ${skill.metadata.name}\n`;
+      skillsSection += `**Description**: ${skill.metadata.description}\n`;
+      
+      if (skill.metadata.tags && skill.metadata.tags.length > 0) {
+        skillsSection += `**Tags**: ${skill.metadata.tags.join(', ')}\n`;
+      }
+      
+      // 添加 SKILL.md 的主要内容（限制长度以避免上下文过长）
+      const contentPreview = skill.content.substring(0, 2000);
+      skillsSection += `\n${contentPreview}\n`;
+      
+      // 如果有子目录，告知 AI 可以访问这些资源
+      const resources = [];
+      if (skill.hasScripts) resources.push('scripts/');
+      if (skill.hasReferences) resources.push('references/');
+      if (skill.hasAssets) resources.push('assets/');
+      
+      if (resources.length > 0) {
+        skillsSection += `\n**Available Resources**: ${resources.join(', ')}\n`;
+        skillsSection += `You can read files from these directories using the read tool when needed.\n`;
+      }
+      
+      skillsSection += '\n---\n\n';
+    }
+
+    // 更新 system prompt
+    (conversation as any).systemPrompt = currentSystemPrompt + skillsSection;
+  }
+
+  /**
+   * 获取 SkillManager 实例
+   */
+  getSkillManager(): SkillManager {
+    return this.skillManager;
+  }
+
+  /**
+   * 列出所有已注册的 skills
+   */
+  listSkills(): string[] {
+    return this.skillManager.getSkillNames();
   }
 
   getConversation(): Conversation {
